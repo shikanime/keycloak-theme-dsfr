@@ -7,7 +7,7 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import { useState } from "react";
 
-export default function LoginConfigTOTP(props: PageProps<Extract<KcContext, { pageId: "login-config-totp.ftl" }>, I18n>) {
+export default function LoginConfigTOTP(props: Readonly<PageProps<Extract<KcContext, { pageId: "login-config-totp.ftl" }>, I18n>>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
 
     const { kcClsx } = getKcClsx({
@@ -116,8 +116,7 @@ export default function LoginConfigTOTP(props: PageProps<Extract<KcContext, { pa
                             name: "totp",
                             required: true,
                             autoFocus: true,
-                            defaultValue: "",
-                            tabIndex: 1
+                            defaultValue: ""
                         }}
                     />
                     <input type="hidden" id="totpSecret" name="totpSecret" value={totp.totpSecret} />
@@ -132,8 +131,7 @@ export default function LoginConfigTOTP(props: PageProps<Extract<KcContext, { pa
                             required: (totp.otpCredentials ?? []).length > 1,
                             name: "userLabel",
                             autoFocus: true,
-                            defaultValue: "",
-                            tabIndex: 2
+                            defaultValue: ""
                         }}
                     />
                     <div className={kcClsx("kcFormGroupClass")}>
@@ -147,7 +145,6 @@ export default function LoginConfigTOTP(props: PageProps<Extract<KcContext, { pa
                                     type="submit"
                                     disabled={isLoginButtonDisabled}
                                     nativeButtonProps={{
-                                        tabIndex: 3,
                                         id: "saveTOTPBtn"
                                     }}
                                 >
@@ -161,7 +158,6 @@ export default function LoginConfigTOTP(props: PageProps<Extract<KcContext, { pa
                                     disabled={isLoginButtonDisabled}
                                     value="true"
                                     nativeButtonProps={{
-                                        tabIndex: 4,
                                         id: "cancelTOTPBtn",
                                         name: "cancel-aia"
                                     }}
@@ -176,7 +172,6 @@ export default function LoginConfigTOTP(props: PageProps<Extract<KcContext, { pa
                             type="submit"
                             disabled={isLoginButtonDisabled}
                             nativeButtonProps={{
-                                tabIndex: 3,
                                 id: "saveTOTPBtn"
                             }}
                         >
@@ -189,7 +184,7 @@ export default function LoginConfigTOTP(props: PageProps<Extract<KcContext, { pa
     );
 }
 
-function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
+function LogoutOtherSessions(props: Readonly<{ kcClsx: KcClsx; i18n: I18n }>) {
     const { kcClsx, i18n } = props;
 
     const { msg } = i18n;
@@ -198,7 +193,7 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
         <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
             <div className={kcClsx("kcFormOptionsWrapperClass")}>
                 <div className={fr.cx("fr-checkbox-group", "fr-checkbox-group--sm")}>
-                    <input id="logout-sessions" tabIndex={5} name="logout-sessions" type="checkbox" defaultChecked={true} />{" "}
+                    <input id="logout-sessions" name="logout-sessions" type="checkbox" defaultChecked={true} />{" "}
                     <label htmlFor="logout-sessions">{msg("logoutOtherSessions")}</label>
                 </div>
             </div>
